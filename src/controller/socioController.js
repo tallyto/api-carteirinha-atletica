@@ -10,7 +10,7 @@ module.exports = {
       const {
         name, matricula, curso, cpf,
       } = req.body;
-      const exist = await Socio.find({ cpf });
+      const exist = await Socio.findOne({ cpf });
 
       if (exist) {
         return res.json(exist);
@@ -31,7 +31,7 @@ module.exports = {
   async index(req, res) {
     try {
       const { cpf } = req.query;
-      const socio = await Socio.find({ cpf });
+      const socio = await Socio.findOne({ cpf });
       return res.json(socio);
     } catch (error) {
       return res.json(error);
