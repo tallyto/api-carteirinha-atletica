@@ -21,6 +21,10 @@ connect(
 
 server.use(routes);
 
+
+const porta = process.env.PORT || 3001;
+
+
 server.listen(3001, () => {
-  console.log('Server in http://localhost:3001');
+  console.log(`Server in http://localhost:${porta}`);
 });
