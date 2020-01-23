@@ -25,6 +25,6 @@ server.use(routes);
 const porta = process.env.PORT || 3001;
 
 
-server.listen(3001, () => {
+server.listen(porta, () => {
   console.log(`Server in http://localhost:${porta}`);
 });
