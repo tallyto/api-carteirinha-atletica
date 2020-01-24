@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const serveStatic = require('serve-static');
 const path = require('path');
 
+
 const server = express();
 const cors = require('cors');
 const routes = require('./routes');
@@ -15,6 +16,7 @@ const routes = require('./routes');
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 server.use(serveStatic(path.join(__dirname, 'public')));
+
 
 server.use(cors());
 
