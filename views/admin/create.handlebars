@@ -1,0 +1,23 @@
+<div class="card-body">
+
+    <div class="card">
+        <div class="card-body">
+            <h4>Cadastrar sócio</h4>
+
+            <form action="/admin/create" method="POST">
+                
+                <label for="name">Nome: </label>
+                <input type="text" name="name" class="form-control" value="" required="true">
+                <label for="cpf">CPF: </label>
+                <input type="text" name="cpf" class="form-control" placeholder="Somente números" maxlength="11"
+                    required="true">
+                <label for="matricula">Matricula: </label>
+                <input type="text" name="matricula" class="form-control" value=""  placeholder="Somente números" maxlength="11"required="true">
+                 <label for="matricula">Cruso: </label>
+                <input type="text" name="curso" class="form-control" value="" required="true">
+
+
+                <button class="btn btn-success mt-4" type="submit">Cadastrar</button>
+            </form>
+        </div>
+    </div>
