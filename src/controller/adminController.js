@@ -6,7 +6,9 @@ const Socio = model('socios');
 
 module.exports = {
   async index(req, res) {
-    const socio = await Socio.find().sort({ name: 1 }).lean();
+    const socio = await Socio.find()
+      .sort({ name: 1 })
+      .lean();
     res.render('admin/index', { socio });
   },
   async destroy(req, res) {
@@ -22,7 +24,7 @@ module.exports = {
   },
   async update(req, res) {
     const {
-      name, cpf, matricula, curso,
+      name, cpf, matricula, curso, isValid,
     } = req.body;
 
     const { id } = req.params;
@@ -33,7 +35,9 @@ module.exports = {
     socio.cpf = cpf;
     socio.matricula = matricula;
     socio.curso = curso;
-    socio.save();
+    socio.isValid = isValid;
+    await socio.save();
+
     res.redirect('/admin');
   },
   create(req, res) {
@@ -44,13 +48,14 @@ module.exports = {
       name, cpf, matricula, curso,
     } = req.body;
     const user = {
-      name, cpf, matricula, curso,
+      name,
+      cpf,
+      matricula,
+      curso,
     };
 
     await Socio.create(user);
 
     res.redirect('/admin');
   },
-
-
 };

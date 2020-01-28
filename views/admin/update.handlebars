@@ -1,29 +1,35 @@
-<div class="card-body">
+<div class="container mt-4">
 
-
-  
-
-
-    <div class="card">
+     <h4>Editar sócio</h4>
+    <div class="card mt-4">
         <div class="card-body">
-            <h4>Editar sócio</h4>
+
+           
 
             <form action="/admin/update/{{socio._id}}" method="POST">
-                
+
                 <label for="name">Nome: </label>
                 <input type="text" name="name" class="form-control" value="{{socio.name}}" required="true">
                 <label for="cpf">CPF: </label>
-                <input type="text" name="cpf" class="form-control" value="{{socio.cpf}}"
-                    required="true">
+                <input type="text" name="cpf" class="form-control" value="{{socio.cpf}}" required="true">
                 <label for="matricula">Matricula: </label>
                 <input type="text" name="matricula" class="form-control" value="{{socio.matricula}}" required="true">
-                 <label for="matricula">Cruso: </label>
+                <label for="matricula">Cruso: </label>
                 <input type="text" name="curso" class="form-control" value="{{socio.curso}}" required="true">
-
+                <div class="form-group">
+                    <label for="ativo">Sócio ativo?</label>
+                    <select name="isValid" class="form-control" id="isValid">
+                        <option value="{{socio.isValid}}">{{socio.isValid}}</option>
+                        <option value="true">Sim</option>
+                        <option value="false">Não</option>
+                    </select>
+                </div>
 
                 <button class="btn btn-success mt-4" type="submit">Editar sócio</button>
             </form>
         </div>
     </div>
 
+
+</div>
 </div>

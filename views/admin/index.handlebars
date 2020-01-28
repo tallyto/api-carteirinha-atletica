@@ -1,4 +1,4 @@
-<div class="card-body">
+<div class="container mt-4">
     <h3>Sócios</h3>
 
     <hr>
@@ -6,16 +6,40 @@
 
     <div class="card-columns mt-4">
         {{#each socio }}
+        {{#if isValid}}
+ 
+            <div class="card  border-success">
+                {{!-- <img src="https://avatars3.githubusercontent.com/u/28845658?s=460&v=4" class="card-img-top rounded" > --}}
+                <div class="card-body" >
+                    
+                    <h5 class="card-title">{{name}}</h5>
+                    <p class="card-text">CPF: {{cpf}}</p>
+                    <p class="card-text">MATRICULA: {{matricula}}</p>
+                    <p class="card-text">{{curso}}</p>
+                    
+                    <form action="/admin/findUser/{{_id}}" class="mt-2" method="POST">
+                        <button type="submit" class="btn btn-success">Editar</button>
+                    </form>
 
-        <div class="col-12">
-            <div class="card">
+                    <form action="/admin/destroy/{{_id}}" class="mt-2" method="POST">
+                        <button type="submit" class="btn btn-danger ">Deletar</button>
+                    </form>
+
+                </div>
+
+            </div>
+       
+
+        {{else}}
+  
+            <div class="card border-danger">
                 {{!-- <img src="https://avatars3.githubusercontent.com/u/28845658?s=460&v=4" class="card-img-top rounded" > --}}
                 <div class="card-body">
                     
                     <h5 class="card-title">{{name}}</h5>
                     <p class="card-text">CPF: {{cpf}}</p>
                     <p class="card-text">MATRICULA: {{matricula}}</p>
-                    <p class="card-text">Curso: {{curso}}</p>
+                    <p class="card-text">{{curso}}</p>
 
                     <form action="/admin/findUser/{{_id}}" class="mt-2" method="POST">
                         <button type="submit" class="btn btn-success">Editar</button>
@@ -28,9 +52,11 @@
                 </div>
 
             </div>
-        </div>
+  
 
 
+        {{/if}}
+        
         {{/each}}
 
     </div>
