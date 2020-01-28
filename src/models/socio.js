@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 
 const SocioSchema = new Schema(
   {
-    name: {
+    nome: {
       type: String,
       required: true,
     },
@@ -24,8 +24,15 @@ const SocioSchema = new Schema(
       required: true,
       default: true,
     },
+    img: {
+      name: String,
+      size: Number,
+      key: String,
+      url: String,
+    },
   },
   { timestamps: true },
 );
+
 
 module.exports = model('socios', SocioSchema);
