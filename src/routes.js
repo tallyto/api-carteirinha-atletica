@@ -19,9 +19,8 @@ routes.post(
   '/admin/create',
   multer(multerConfig).single('file'), admin.createUser);
 
-
 routes.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', {title: "Ticket Atlética"});
 });
 
 

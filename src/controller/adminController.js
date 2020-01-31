@@ -3,7 +3,6 @@
 require('./../models/socio');
 const aws = require('aws-sdk');
 
-
 const { model } = require('mongoose');
 
 const Socio = model('socios');
@@ -15,7 +14,6 @@ const s3 = new aws.S3(
     region: 'sa-east-1',
   },
 );
-
 
 function removeImageS3(key) {
   s3.deleteObject({
@@ -55,7 +53,7 @@ module.exports = {
   async index(req, res) {
     const socio = await Socio.find().sort({ nome: 1 }).lean();
 
-    res.render('admin/index', { socio });
+    res.render('admin/index', { socio, title: 'Ticket Atlética - Sócios' });
   },
   async destroy(req, res) {
     const { id } = req.params;
@@ -68,7 +66,7 @@ module.exports = {
     const { id } = req.params;
     const socio = await Socio.findById({ _id: id }).lean();
 
-    res.render('admin/update', { socio });
+    res.render('admin/update', { socio, title: 'Ticket Atlética - Atualizar' });
   },
   async update(req, res) {
     const {
@@ -92,6 +90,6 @@ module.exports = {
     res.render('admin/create');
   },
   adminPage(req, res) {
-    res.render('admin/admin');
+    res.render('admin/admin', { title: 'Ticket Atlética - Admin' });
   },
 };
