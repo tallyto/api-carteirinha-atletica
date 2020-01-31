@@ -17,7 +17,6 @@ const usuario = require('./controller/userController');
 
 const server = express();
 
-
 server.use(
   session({
     secret: 'keyboard cat',
@@ -26,18 +25,14 @@ server.use(
   }),
 );
 
-
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 server.use(serveStatic(path.join(__dirname, 'public')));
-
 server.use(flash());
-
 
 // Auth
 server.use(passport.initialize());
 server.use(passport.session());
-
 
 server.use(cors());
 
@@ -53,22 +48,17 @@ server.use((req, res, next) => {
 server.engine('handlebars', handlebars({ defaultLayout: 'main' }));
 server.set('view engine', 'handlebars');
 
-
 connect(
   'mongodb+srv://otallytodev:1233211996@cluster0-jq9ag.mongodb.net/carteirinha?retryWrites=true&w=majority',
   { useUnifiedTopology: true, useNewUrlParser: true },
-)
-  .then(() => {
+).then(() => {
     console.log('Banco de dados conectado com sucesso!');
-  })
-  .catch(() => console.log('Erro ao conectar ao banco de dados'));
+  }).catch(() => console.log('Erro ao conectar ao banco de dados'));
 
 server.use(routes);
 server.use('/usuario', usuario);
 
-
 const PORT = process.env.PORT || 3001;
-
 
 server.listen(PORT, () => {
   console.log(`Server in http://localhost:${PORT}`);

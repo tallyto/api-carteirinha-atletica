@@ -34,5 +34,4 @@ const SocioSchema = new Schema(
   { timestamps: true },
 );
 
-
 module.exports = model('socios', SocioSchema);

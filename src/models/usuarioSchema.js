@@ -14,16 +14,12 @@ const Usuario = new Schema({
   },
   eAdmin: {
     type: Number,
-    default: 0,
+    default: 1,
   },
   senha: {
     type: String,
     required: true,
   },
-  createdAt: {
-    type: Date,
-    default: Date.now(),
-  },
-});
+}, { timestamps: true });
 
 mongoose.model('usuarios', Usuario);

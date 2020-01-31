@@ -19,14 +19,15 @@ const Usuario = mongoose.model('usuarios');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
 const { check, validationResult } = require('express-validator');
+const { eAdmin } = require('./../helpers/eAdmin');
 
 
-Router.get('/cadastro', (req, res) => {
+Router.get('/cadastro', eAdmin, (req, res) => {
   res.render('user/create', { title: 'Cadastrar usuário' });
 });
 
 Router.post(
-  '/registro',
+  '/registro', eAdmin,
   [
     check('nome', 'O nome precisa ter no minimo 3 caracteres!').isLength({
       min: 3,
@@ -89,7 +90,7 @@ Router.post(
                   .catch((erro) => {
                     req.flash(
                       'error_msg',
-                      'Houve um erro ao criar o usuário tente novamente!',
+                      'Houve um erro ao criar o usuário, tente novamente!',
                     );
                     res.redirect('/usuario/registro');
                   });
@@ -106,13 +107,13 @@ Router.post(
 );
 
 Router.get('/login', (req, res) => {
-  res.render('user/login', { title: 'Entrar' });
+  res.render('login', { title: 'Entrar' });
 });
 
 Router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
-    successRedirect: '/admin',
-    failureRedirect: '/',
+    successRedirect: '/admin/index',
+    failureRedirect: '/usuario/login',
     failureFlash: true,
   })(req, res, next);
 });

@@ -30,6 +30,7 @@ module.exports = {
     const {
       originalname: name, size, key, location: url = '',
     } = req.file;
+
     const {
       nome, cpf, matricula, curso,
     } = req.body;
@@ -49,12 +50,10 @@ module.exports = {
 
     await Socio.create(newUser);
 
-    res.redirect('/admin');
+    res.redirect('/admin/index');
   },
   async index(req, res) {
-    const socio = await Socio.find()
-      .sort({ name: 1 })
-      .lean();
+    const socio = await Socio.find().sort({ nome: 1 }).lean();
 
     res.render('admin/index', { socio });
   },
@@ -63,7 +62,7 @@ module.exports = {
     const socio = await Socio.findOneAndRemove({ _id: id });
     removeImageS3(socio.img.key);
 
-    res.redirect('/admin');
+    res.redirect('/admin/index');
   },
   async findUser(req, res) {
     const { id } = req.params;
@@ -87,9 +86,12 @@ module.exports = {
     socio.isValid = isValid;
     await socio.save();
 
-    res.redirect('/admin');
+    res.redirect('/admin/index');
   },
   create(req, res) {
     res.render('admin/create');
+  },
+  adminPage(req, res) {
+    res.render('admin/admin');
   },
 };
