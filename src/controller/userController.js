@@ -50,7 +50,7 @@ Router.post(
     }
 
     if (!error.isEmpty()) {
-      res.render('usuarios/registro', {
+      res.render('user/create', {
         erros, title: 'Cadastrar usuário',
       });
     } else {
@@ -63,7 +63,7 @@ Router.post(
               'error_msg',
               'O email informado já possui cadastro no site!',
             );
-            res.redirect('/usuario/registro');
+            res.redirect('/usuario/cadastro');
           } else {
             const novoUsuario = new Usuario({
               nome: req.body.nome,
@@ -72,15 +72,15 @@ Router.post(
             });
 
             bcrypt.genSalt(10, (erro, salt) => {
-              bcrypt.hash(novoUsuario.senha, salt, (erro, hash) => {
+              bcrypt.hash(novoUsuario.senha, salt, async (erro, hash) => {
                 if (erro) {
                   req.flash('error_msg', 'Erro ao cadastrar usuário!');
-                  res.redirect('/');
+                  res.redirect('/usuario/cadastro');
                 }
 
                 novoUsuario.senha = hash;
 
-                novoUsuario
+                await novoUsuario
                   .save()
                   .then(() => {
                     req.flash('success_msg', 'Usuário cadastrado com sucesso!');

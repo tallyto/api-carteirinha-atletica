@@ -14,7 +14,16 @@
 
   {{>_navbar}}
 
-  <div class="container-fluid" style="min-height: 100vh;  ">
+  <div class="container" style="min-height: 100vh;">
+
+    {{#if error}}
+
+    <div class="alert alert-danger mt-2">{{error}}</div>
+
+    {{else}}
+
+    {{/if}}
+    {{_msg}}
 
     {{{body}}}
   </div>

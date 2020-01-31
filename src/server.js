@@ -2,7 +2,7 @@
 /* eslint-disable no-console */
 const express = require('express');
 const { connect } = require('mongoose');
-const exphbs = require('express-handlebars');
+const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 const serveStatic = require('serve-static');
 const path = require('path');
@@ -50,7 +50,7 @@ server.use((req, res, next) => {
   next();
 });
 
-server.engine('handlebars', exphbs({ defaultLayout: 'main' }));
+server.engine('handlebars', handlebars({ defaultLayout: 'main' }));
 server.set('view engine', 'handlebars');
 
 
@@ -67,9 +67,9 @@ server.use(routes);
 server.use('/usuario', usuario);
 
 
-const porta = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001;
 
 
-server.listen(porta, () => {
-  console.log(`Server in http://localhost:${porta}`);
+server.listen(PORT, () => {
+  console.log(`Server in http://localhost:${PORT}`);
 });

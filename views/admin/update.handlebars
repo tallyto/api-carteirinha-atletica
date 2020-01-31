@@ -1,10 +1,10 @@
 <div class="container mt-4">
 
-     <h4>Editar sócio</h4>
+    <h4>Editar sócio</h4>
     <div class="card mt-4">
         <div class="card-body">
 
-           
+
 
             <form action="/admin/update/{{socio._id}}" method="POST">
 
@@ -19,9 +19,22 @@
                 <div class="form-group">
                     <label for="ativo">Sócio ativo?</label>
                     <select name="isValid" class="form-control" id="isValid">
-                        <option value="{{socio.isValid}}">{{socio.isValid}}</option>
-                        <option value="true">Sim</option>
+                        <option value="{{socio.isValid}}">
+                            {{#if socio.isValid}}
+                            Sim
+                            {{else}}
+                            Nao
+                            {{/if}}
+                        </option>
+
+
+                        {{#if socio.isValid}}
                         <option value="false">Não</option>
+                        {{else}}
+                        <option value="true">Sim</option>
+                        {{/if}}
+
+
                     </select>
                 </div>
 

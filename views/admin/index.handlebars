@@ -1,64 +1,69 @@
-<div class="container mt-4">
+<div class="card-body">
     <h3>Sócios</h3>
 
     <hr>
     <a href="/admin/create"><button type="submit" class="btn btn-success">Cadastrar sócio</button></a>
 
-    <div class="card-columns mt-4">
+    <div class="row">
         {{#each socio }}
         {{#if isValid}}
 
-            
-            <div class="card  border-success " >
-                <img src={{img.url}} class="card-img-top rounded" style="width: 200px; height:200px;" >
-                <div class="card-body" >
-                    
-                    <h5 class="card-title">{{nome}}</h5>
-                    <p class="card-text">CPF: {{cpf}}</p>
-                    <p class="card-text">MATRICULA: {{matricula}}</p>
-                    <p class="card-text">{{curso}}</p>
-                   
-                    
+        <div class="col-lg-3 mt-3">
+            <div class="profile card border-success" style="background-color: whitesmoke;">
+                <div class="card-body">
+                    <img src={{img.url}} class="rounded" style="width: 150px; height:150px;">
+
+
+                    <h5 class="title">{{nome}}</h5>
+                    <p class="description">CPF: {{cpf}}</p>
+                    <p class="description">MATRICULA: {{matricula}}</p>
+                    <p class="description">{{curso}}</p>
+
+
+
+
                     <form action="/admin/findUser/{{_id}}" class="mt-2" method="POST">
                         <button type="submit" class="btn btn-success">Editar</button>
                     </form>
 
-                    <form action="/admin/destroy/{{_id}}" class="mt-2" method="POST">
-                        <button type="submit" class="btn btn-danger ">Deletar</button>
-                    </form>
+
+                    {{!-- <form action="/admin/destroy/{{_id}}" class="mt-2" method="POST">
+                                <button type="submit" class="btn btn-danger ">Deletar</button>
+                            </form> --}}
 
                 </div>
-
             </div>
-   
+        </div>
 
         {{else}}
-  
-            <div class="card border-danger">
-                <img src={{img.url}} class="card-img-top rounded" style="width: 200px; height:200px;">
+        <div class="col-lg-3 mt-3">
+            <div class="profile card border-danger" style="background-color: whitesmoke;">
                 <div class="card-body">
-                    
-                    <h5 class="card-title">{{nome}}</h5>
-                    <p class="card-text">CPF: {{cpf}}</p>
-                    <p class="card-text">MATRICULA: {{matricula}}</p>
-                    <p class="card-text">{{curso}}</p>
+                    <img src={{img.url}} class="rounded" style="width: 150px; height:150px;">
+
+
+                    <h5 class="title">{{nome}}</h5>
+                    <p class="description">CPF: {{cpf}}</p>
+                    <p class="description">MATRICULA: {{matricula}}</p>
+                    <p class="description">{{curso}}</p>
+
+
+
 
                     <form action="/admin/findUser/{{_id}}" class="mt-2" method="POST">
                         <button type="submit" class="btn btn-success">Editar</button>
                     </form>
 
-                    <form action="/admin/destroy/{{_id}}" class="mt-2" method="POST">
-                        <button type="submit" class="btn btn-danger ">Deletar</button>
-                    </form>
+
+                    {{!-- <form action="/admin/destroy/{{_id}}" class="mt-2" method="POST">
+                                <button type="submit" class="btn btn-danger ">Deletar</button>
+                            </form> --}}
 
                 </div>
-
             </div>
-  
-
-
+        </div>
         {{/if}}
-        
+
         {{/each}}
 
     </div>
