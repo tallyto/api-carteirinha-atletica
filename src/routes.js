@@ -1,29 +1,32 @@
-/* eslint-disable linebreak-style */
-
 const { Router } = require('express');
 const multer = require('multer');
-const socio = require('./controller/socioController');
-const admin = require('./controller/adminController');
+
+const Admin = require('./controller/admin');
+const Api = require('./controller/api');
+const Socio = require('./controller/socio');
+
 const multerConfig = require('./config/multerConfig');
-const { eAdmin } = require('./helpers/eAdmin')
+const { eAdmin } = require('./helpers/eAdmin');
 
 const routes = Router();
 
-routes.get("/admin", eAdmin, admin.adminPage)
-routes.get('/admin/index', eAdmin, admin.index);
-routes.post('/admin/destroy/:id', eAdmin, admin.destroy);
-routes.post('/admin/findUser/:id', eAdmin, admin.findUser);
-routes.post('/admin/update/:id', eAdmin, admin.update);
-routes.get('/admin/create', eAdmin, admin.create);
-routes.post(
-  '/admin/create',
-  multer(multerConfig).single('file'), admin.createUser);
+// Admin
+routes.get('/admin', eAdmin, Admin.index);
+
+// Socio
+routes.get('/socio/index', eAdmin, Socio.indexPage);
+routes.get('/socio/create', eAdmin, Socio.createPage);
+routes.post('/socio/findAndUpdate/:id', eAdmin, Socio.findAndUpdate);
+routes.post('/socio/create', eAdmin, multer(multerConfig).single('file'), Socio.create);
+routes.post('/socio/update/:id', eAdmin, Socio.update);
+routes.post('/socio/remove/:id', eAdmin, Socio.remove);
+
+// Api
+routes.get('/api/index', Api.index);
+routes.get('/api/show', Api.show);
 
 routes.get('/', (req, res) => {
-  res.render('index', {title: "Ticket Atlética"});
+  res.render('index', { title: 'Ticket Atlética' });
 });
-
-
-routes.get('/listar/socio', socio.index);
 
 module.exports = routes;

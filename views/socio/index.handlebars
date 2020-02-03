@@ -2,7 +2,7 @@
     <h3>Sócios</h3>
 
     <hr>
-    <a href="/admin/create"><button type="submit" class="btn btn-success">Cadastrar sócio</button></a>
+    <a href="/socio/create"><button type="submit" class="btn btn-success">Cadastrar sócio</button></a>
 
     <div class="row">
         {{#each socio }}
@@ -22,12 +22,12 @@
 
 
 
-                    <form action="/admin/findUser/{{_id}}" class="mt-2" method="POST">
+                    <form action="/socio/findAndUpdate/{{_id}}" class="mt-2" method="POST">
                         <button type="submit" class="btn btn-success">Editar</button>
                     </form>
 
 
-                    <form action="/admin/destroy/{{_id}}" class="mt-2" method="POST">
+                    <form action="/socio/remove/{{_id}}" class="mt-2" method="POST">
                                 <button type="submit" class="btn btn-danger ">Deletar</button>
                             </form>
 
@@ -50,12 +50,12 @@
 
 
 
-                    <form action="/admin/findUser/{{_id}}" class="mt-2" method="POST">
+                    <form action="/socio/findAndUpdate/{{_id}}" class="mt-2" method="POST">
                         <button type="submit" class="btn btn-success">Editar</button>
                     </form>
 
 
-                    <form action="/admin/destroy/{{_id}}" class="mt-2" method="POST">
+                    <form action="/socio/remove/{{_id}}" class="mt-2" method="POST">
                                 <button type="submit" class="btn btn-danger ">Deletar</button>
                             </form>
 
