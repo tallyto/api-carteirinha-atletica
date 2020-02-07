@@ -57,8 +57,8 @@ class App {
   }
 
   routes() {
-    this.server.use(routes);
     this.server.use('/usuario', usuario);
+    this.server.use(routes);
   }
 
   engine() {

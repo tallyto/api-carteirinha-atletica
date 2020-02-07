@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 /* eslint-disable no-param-reassign */
 const multer = require('multer');
 const path = require('path');
@@ -22,8 +21,8 @@ const storageTypes = {
   }),
   s3: multerS3({
     s3: new aws.S3({
-      accessKeyId: 'AKIAVHKUOQJ4I5J4CANF',
-      secretAccessKey: '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',
+      accessKeyId: 'AKIAVHKUOQJ4HN6ZZNPV',
+      secretAccessKey: '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',
       region: 'sa-east-1',
     }),
     bucket: 'carteirinha-atletica',
