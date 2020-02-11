@@ -1,9 +1,8 @@
 /* eslint-disable linebreak-style */
 const mongoose = require('mongoose');
 
-const { Schema } = mongoose;
 
-const Usuario = new Schema({
+const Usuario = new mongoose.Schema({
   nome: {
     type: String,
     required: true,
