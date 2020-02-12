@@ -1,6 +1,6 @@
 const Socio = require('./../schema/socio');
 
-class ApiController {
+class ApiSocioController {
   async show(req, res) {
     try {
       const { cpf } = req.query;
@@ -10,15 +10,6 @@ class ApiController {
       return res.json(error);
     }
   }
-
-  async index(req, res) {
-    try {
-      const socio = await Socio.find();
-      return res.json(socio);
-    } catch (error) {
-      return res.json(error);
-    }
-  }
 }
 
-module.exports = new ApiController();
+module.exports = new ApiSocioController();
