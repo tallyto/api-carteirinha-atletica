@@ -1,9 +1,10 @@
 const { Router } = require('express');
 const multer = require('multer');
 
-const Admin = require('./controller/admin');
-const Api = require('./controller/api');
-const Socio = require('./controller/socio');
+const Admin = require('./controller/AdminController');
+const Api = require('./controller/ApiController');
+const Socio= require('./controller/SocioController');
+const Usuario = require("./controller/UsuarioController")
 
 const multerConfig = require('./config/multerConfig');
 const { eAdmin } = require('./helpers/eAdmin');
@@ -18,8 +19,16 @@ routes.get('/', (req, res) => {
   res.render('index', { title: 'Ticket Atlética' });
 });
 
-// Rotas protegitas por login
-routes.use(eAdmin);
+//Usuário
+routes.get('/usuario/cadastro', Usuario.cadastro)
+routes.post('/usuario/registro', Usuario.registro)
+routes.get('/usuario/login',Usuario.loginPage)
+routes.post("/usuario/login", Usuario.login)
+routes.get("/usuario/logout",Usuario.logout)
+
+
+// // Rotas protegitas por login
+ routes.use(eAdmin);
 
 // Admin
 routes.get('/admin', Admin.index);

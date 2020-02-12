@@ -1,8 +1,6 @@
-/* eslint-disable linebreak-style */
 const mongoose = require('mongoose');
 
-
-const Usuario = new mongoose.Schema({
+const UsuarioSchema = new mongoose.Schema({
   nome: {
     type: String,
     required: true,
@@ -21,4 +19,4 @@ const Usuario = new mongoose.Schema({
   },
 }, { timestamps: true });
 
-mongoose.model('usuarios', Usuario);
+module.exports = mongoose.model('usuarios', UsuarioSchema);

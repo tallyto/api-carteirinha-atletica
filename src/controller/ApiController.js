@@ -1,10 +1,6 @@
-require('./../models/socio');
+const Socio = require('./../schema/socio');
 
-const { model } = require('mongoose');
-
-const Socio = model('socios');
-
-module.exports = {
+class ApiController {
   async show(req, res) {
     try {
       const { cpf } = req.query;
@@ -13,7 +9,8 @@ module.exports = {
     } catch (error) {
       return res.json(error);
     }
-  },
+  }
+
   async index(req, res) {
     try {
       const socio = await Socio.find();
@@ -21,5 +18,7 @@ module.exports = {
     } catch (error) {
       return res.json(error);
     }
-  },
-};
+  }
+}
+
+module.exports = new ApiController();

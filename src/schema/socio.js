@@ -1,6 +1,6 @@
-const { Schema, model } = require('mongoose');
+const mongoose = require('mongoose');
 
-const SocioSchema = new Schema(
+const SocioSchema = new mongoose.Schema(
   {
     nome: {
       type: String,
@@ -33,4 +33,4 @@ const SocioSchema = new Schema(
   { timestamps: true },
 );
 
-module.exports = model('socios', SocioSchema);
+module.exports = mongoose.model('socios', SocioSchema);

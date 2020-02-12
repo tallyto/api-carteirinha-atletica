@@ -1,6 +1,4 @@
-/* eslint-disable linebreak-style */
 const express = require('express');
-const { connect } = require('mongoose');
 const handlebars = require('express-handlebars');
 const bodyParser = require('body-parser');
 const serveStatic = require('serve-static');
@@ -9,10 +7,9 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const cors = require('cors');
-
-const usuario = require('./controller/userController');
 const routes = require('./routes');
 
+require('./database');
 require('./config/auth')(passport);
 
 class App {
@@ -21,7 +18,6 @@ class App {
     this.middlewares();
     this.routes();
     this.engine();
-    this.db();
   }
 
   middlewares() {
@@ -57,22 +53,12 @@ class App {
   }
 
   routes() {
-    this.server.use('/usuario', usuario);
     this.server.use(routes);
   }
 
   engine() {
     this.server.engine('handlebars', handlebars({ defaultLayout: 'main' }));
     this.server.set('view engine', 'handlebars');
-  }
-
-  db() {
-    connect(
-      'mongodb+srv://otallytodev:1233211996@cluster0-jq9ag.mongodb.net/carteirinha?retryWrites=true&w=majority',
-      { useUnifiedTopology: true, useNewUrlParser: true },
-    ).then(() => {
-      console.log('Banco de dados conectado com sucesso!');
-    }).catch(() => console.log('Erro ao conectar ao banco de dados'));
   }
 }
 

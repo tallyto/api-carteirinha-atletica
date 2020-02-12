@@ -2,13 +2,9 @@
 /* eslint-disable consistent-return */
 
 const localStrategy = require('passport-local').Strategy;
-const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-// Model de usuário
-require('./../models/usuarioSchema');
-
-const Usuario = mongoose.model('usuarios');
+const Usuario = require('./../schema/usuario');
 
 module.exports = (passport) => {
   passport.use(
@@ -17,14 +13,14 @@ module.exports = (passport) => {
       (email, senha, done) => {
         Usuario.findOne({ email }).then((usuario) => {
           if (!usuario) {
-            return done(null, false, { message: 'Esta conta não existe!' });
+            return done(null, false, { message: 'Esta conta não existe' });
           }
 
           bcrypt.compare(senha, usuario.senha, (erro, batem) => {
             if (batem) {
               return done(null, usuario);
             }
-            return done(null, false, { message: 'Senha incorreta!' });
+            return done(null, false, { message: 'Senha incorreta' });
           });
         });
       },
