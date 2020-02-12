@@ -3,8 +3,9 @@ const multer = require('multer');
 
 const Admin = require('./controller/AdminController');
 const Api = require('./controller/ApiController');
-const Socio= require('./controller/SocioController');
-const Usuario = require("./controller/UsuarioController")
+const Socio = require('./controller/SocioController');
+const Usuario = require('./controller/UsuarioController');
+const Parceiro = require('./controller/ParceiroController');
 
 const multerConfig = require('./config/multerConfig');
 const { eAdmin } = require('./helpers/eAdmin');
@@ -19,16 +20,24 @@ routes.get('/', (req, res) => {
   res.render('index', { title: 'Ticket Atlética' });
 });
 
-//Usuário
-routes.get('/usuario/cadastro', Usuario.cadastro)
-routes.post('/usuario/registro', Usuario.registro)
-routes.get('/usuario/login',Usuario.loginPage)
-routes.post("/usuario/login", Usuario.login)
-routes.get("/usuario/logout",Usuario.logout)
+// Usuário
+routes.get('/usuario/cadastro', Usuario.cadastro);
+routes.get('/usuario/login', Usuario.loginPage);
+routes.post('/usuario/registro', Usuario.registro);
+routes.post('/usuario/login', Usuario.login);
+routes.get('/usuario/logout', Usuario.logout);
+
+// Parceiro
+routes.get('/parceiro/index', Parceiro.indexPage);
+routes.get('/parceiro/create', Parceiro.createPage);
+routes.post('/parceiro/create', multer(multerConfig).single('file'), Parceiro.create);
+routes.post('/parceiro/findAndUpdate/:id', Parceiro.findAndUpdate);
+routes.post('/parceiro/update/:id', Parceiro.update);
+routes.post('/parceiro/remove/:id', Parceiro.remove);
 
 
-// // Rotas protegitas por login
- routes.use(eAdmin);
+// Rotas protegitas por login
+routes.use(eAdmin);
 
 // Admin
 routes.get('/admin', Admin.index);

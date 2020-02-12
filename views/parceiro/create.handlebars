@@ -1,0 +1,28 @@
+<div class="card-body">
+    <h4>Cadastrar Parceiro</h4>
+    <div class="card mt-4">
+        <div class="card-body">
+
+            <form action="/parceiro/create" method="POST" enctype="multipart/form-data">
+
+                <label for="name">Nome: </label>
+                <input type="text" name="nome" class="form-control" value="" required="true">
+
+                <label for="promocao">Promocão: </label>
+                <input type="text" name="promocao" class="form-control" required="true">
+
+                <label for="slug">Imagem: </label>
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" name="file" required>
+                        <label class="custom-file-label">Selecione a imagem</label>
+                    </div>
+                </div>
+
+                <button class="btn btn-success mt-2" type="submit">Cadastrar</button>
+
+            </form>
+        </div>
+    </div>
+
+</div>

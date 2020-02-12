@@ -20,6 +20,12 @@ class SocioController {
         nome, cpf, matricula, curso,
       } = req.body;
 
+      const exist = Socio.find(cpf);
+
+      if (exist) {
+        return res.render('socio/create', { title: 'Ticket Atlética - Cadastrar Sócio', error_msg: 'Esse CPF já consta na nossa base de dados' });
+      }
+
       const newSocio = {
         nome,
         cpf,
@@ -32,10 +38,10 @@ class SocioController {
           url,
         },
       };
-      res.redirect('/socio/index');
       await Socio.create(newSocio);
+      return res.redirect('/socio/index');
     } catch (error) {
-      res.render('socio/create', { title: 'Ticket Atlética - Cadastrar Sócio', error_msg: 'Erro ao cadastrar novo sócio' });
+      return res.render('socio/create', { title: 'Ticket Atlética - Cadastrar Sócio', error_msg: 'Erro ao cadastrar novo sócio' });
     }
   }
 
@@ -45,14 +51,14 @@ class SocioController {
 
     removeImageS3(socio.img.key);
 
-    res.redirect('/socio/index');
+    return res.redirect('/socio/index');
   }
 
   async findAndUpdate(req, res) {
     const { id } = req.params;
     const socio = await Socio.findById({ _id: id }).lean();
 
-    res.render('socio/update', { socio, title: 'Ticket Atlética - Atualizar' });
+    return res.render('socio/update', { socio, title: 'Ticket Atlética - Atualizar' });
   }
 
   async update(req, res) {
@@ -71,11 +77,11 @@ class SocioController {
     socio.isValid = isValid;
     await socio.save();
 
-    res.redirect('/socio/index');
+    return res.redirect('/socio/index');
   }
 
   createPage(req, res) {
-    res.render('socio/create', { title: 'Ticket Atlética - Cadastrar Sócio' });
+    return res.render('socio/create', { title: 'Ticket Atlética - Cadastrar Sócio' });
   }
 }
 

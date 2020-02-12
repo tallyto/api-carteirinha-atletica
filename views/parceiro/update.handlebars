@@ -1,0 +1,20 @@
+<div class="container mt-4">
+
+    <h4>Editar Parceiro</h4>
+    <div class="card mt-4">
+        <div class="card-body">
+
+            <form action="/parceiro/update/{{parceiro._id}}" method="POST">
+
+                <label for="nome">Nome: </label>
+                <input type="text" name="nome" class="form-control" value="{{parceiro.nome}}" required="true">
+                <label for="promocao">Promoções: </label>
+
+                <input type="text" name="promocao" class="form-control" value="{{parceiro.promocao}}" required="true">
+
+                <button class="btn btn-success mt-4" type="submit">Editar Parceiro</button>
+
+            </form>
+        </div>
+    </div>
+</div>
