@@ -50,4 +50,8 @@ routes.post('/parceiro/findAndUpdate/:id', Parceiro.findAndUpdate);
 routes.post('/parceiro/update/:id', Parceiro.update);
 routes.post('/parceiro/remove/:id', Parceiro.remove);
 
+routes.use('*', (req, res) => {
+  res.json(null);
+});
+
 module.exports = routes;
