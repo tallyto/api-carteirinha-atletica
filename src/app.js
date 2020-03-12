@@ -16,8 +16,8 @@ class App {
   constructor() {
     this.server = express();
     this.middlewares();
-    this.routes();
     this.engine();
+    this.routes();
   }
 
   middlewares() {
@@ -52,13 +52,13 @@ class App {
     });
   }
 
-  routes() {
-    this.server.use(routes);
-  }
-
   engine() {
     this.server.engine('handlebars', handlebars({ defaultLayout: 'main' }));
     this.server.set('view engine', 'handlebars');
+  }
+
+  routes() {
+    this.server.use(routes);
   }
 }
 
