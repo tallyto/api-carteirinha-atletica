@@ -20,7 +20,10 @@ class SocioController {
         nome, cpf, matricula, curso,
       } = req.body;
 
-      const exist = Socio.findOne({ cpf });
+      console.log(req.body);
+
+      const exist = await Socio.findOne({ cpf });
+      console.log(exist);
 
       if (exist) {
         return res.render('socio/create', { title: 'Ticket Atlética - Cadastrar Sócio', error_msg: 'Esse CPF já consta na nossa base de dados' });
