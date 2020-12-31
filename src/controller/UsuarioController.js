@@ -1,11 +1,7 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable no-shadow */
-
 const Yup = require('yup');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const passport = require('passport');
-const Usuario = require('./../schema/usuario');
+const Usuario = require('../schema/usuario');
 
 class UsuarioController {
   cadastro(req, res) {

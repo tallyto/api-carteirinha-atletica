@@ -1,10 +1,7 @@
-/* eslint-disable new-cap */
-/* eslint-disable consistent-return */
-
 const localStrategy = require('passport-local').Strategy;
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
-const Usuario = require('./../schema/usuario');
+const Usuario = require('../schema/usuario');
 
 module.exports = (passport) => {
   passport.use(

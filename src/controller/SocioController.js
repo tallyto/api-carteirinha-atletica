@@ -1,7 +1,6 @@
+const removeImageS3 = require('../helpers/removeImageS3');
 
-const removeImageS3 = require('./../helpers/removeImageS3');
-
-const Socio = require('./../schema/socio');
+const Socio = require('../schema/socio');
 
 class SocioController {
   async indexPage(req, res) {

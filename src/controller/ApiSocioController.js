@@ -1,4 +1,4 @@
-const Socio = require('./../schema/socio');
+const Socio = require('../schema/socio');
 
 class ApiSocioController {
   async show(req, res) {

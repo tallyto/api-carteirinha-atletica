@@ -1,7 +1,6 @@
+const removeImageS3 = require('../helpers/removeImageS3');
 
-const removeImageS3 = require('./../helpers/removeImageS3');
-
-const Parceiro = require('./../schema/parcerio');
+const Parceiro = require('../schema/parcerio');
 
 class ParceiroController {
   async indexPage(req, res) {

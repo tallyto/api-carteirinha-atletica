@@ -1,4 +1,4 @@
-const Parceiro = require('./../schema/parcerio');
+const Parceiro = require('../schema/parcerio');
 
 class ApiParceiroController {
   async index(req, res) {
